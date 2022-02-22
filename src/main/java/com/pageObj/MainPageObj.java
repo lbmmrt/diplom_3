@@ -61,7 +61,6 @@ public class MainPageObj {
     @FindBy(how = How.XPATH, using = "(.//ul[@class='BurgerIngredients_ingredients__list__2A-mT'])[3]")
     private SelenideElement catalogIngredients;
 
-
     public SelenideElement getButtonLogInAccount() {
         return buttonLogInAccount;
     }

@@ -65,6 +65,7 @@ public class RegistrationPageObj {
         getButtonForRegistration().click();
     }
 
+
     @Step("Ввод пароля")
     public void setValueInFieldPassword(String passwordUser) {
         getFieldForPassword().setValue(passwordUser);

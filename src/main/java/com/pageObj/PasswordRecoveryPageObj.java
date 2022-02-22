@@ -24,6 +24,7 @@ public class PasswordRecoveryPageObj {
         return buttonSignIn;
     }
 
+
     @Step("Клик по кнопке 'Войти'")
     public void clickButtonSignIn() {
         getButtonSignIn().click();

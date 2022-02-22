@@ -5,7 +5,6 @@ import com.UserOperations;
 import org.junit.Test;
 import org.junit.After;
 import org.junit.Before;
-
 import io.qameta.allure.junit4.DisplayName;
 
 import java.util.Map;

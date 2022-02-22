@@ -20,7 +20,6 @@ public class LoginPageObj {
     @FindBy(how = How.XPATH, using = ".//button[text()='Войти']")
     private SelenideElement buttonSignIn;
 
-
     public SelenideElement getFieldForEmail() {
         return fieldForEmail;
     }

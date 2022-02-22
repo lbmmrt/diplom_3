@@ -69,6 +69,7 @@ public class LogInTest {
         mainPageObj.getLabelConstructorBurger().shouldBe(Condition.visible);
     }
 
+
     @DisplayName("Логин через форму восставновления пароля")
     @Test
     public void loginThroughPasswordRecoveryForm() {

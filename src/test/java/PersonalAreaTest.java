@@ -26,6 +26,7 @@ public class PersonalAreaTest {
         loginPageObj.signInAccount(userData.get("email"), userData.get("password"));
     }
 
+
     @After
     public void clearData() {
         userOperations.delete();

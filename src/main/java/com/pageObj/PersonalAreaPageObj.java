@@ -25,6 +25,7 @@ public class PersonalAreaPageObj {
         return buttonLogout;
     }
 
+
     @Step("Клик по кнопке 'Выйти'")
     public void clickButtonLogout() {
         getButtonLogout().click();
