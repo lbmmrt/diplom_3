@@ -1,11 +1,14 @@
-import com.PageObj.LoginPageObj;
-import com.PageObj.MainPageObj;
-import com.PageObj.PasswordRecoveryPageObj;
-import com.PageObj.RegistrationPageObj;
+import com.codeborne.selenide.Condition;
+import com.pageObj.LoginPageObj;
+import com.pageObj.MainPageObj;
+import com.pageObj.PasswordRecoveryPageObj;
+import com.pageObj.RegistrationPageObj;
 import com.UserOperations;
+import org.junit.Test;
 import org.junit.After;
 import org.junit.Before;
-import org.junit.Test;
+
+import io.qameta.allure.junit4.DisplayName;
 
 import java.util.Map;
 
@@ -26,53 +29,58 @@ public class LogInTest {
         userOperations.delete();
     }
 
+    @DisplayName("Логин на главной странице")
     @Test
     public void logInFromMainPage() {
         MainPageObj mainPageObj = open(MainPageObj.getFullPath(), MainPageObj.class);
         mainPageObj.clickButtonLogInAccount();
 
         LoginPageObj loginPageObj = page(LoginPageObj.class);
-        loginPageObj.buttonSignInIsVisible();
+        loginPageObj.getButtonSignIn().shouldBe(Condition.visible);
         loginPageObj.signInAccount(userData.get("email"), userData.get("password"));
 
-        mainPageObj.labelConstructorBurgerIsVisible();
+        mainPageObj.getLabelConstructorBurger().shouldBe(Condition.visible);
     }
 
+    @DisplayName("Логин через кнопку личного кабинета")
     @Test
     public void loginThroughButtonPersonalArea() {
         MainPageObj mainPageObj = open(MainPageObj.getFullPath(), MainPageObj.class);
         mainPageObj.clickButtonPersonalArea();
 
         LoginPageObj loginPageObj = page(LoginPageObj.class);
-        loginPageObj.buttonSignInIsVisible();
+        loginPageObj.getButtonSignIn().shouldBe(Condition.visible);
         loginPageObj.signInAccount(userData.get("email"), userData.get("password"));
 
-        mainPageObj.labelConstructorBurgerIsVisible();
+        mainPageObj.getLabelConstructorBurger().shouldBe(Condition.visible);
     }
 
+    @DisplayName("Логин через кнопку под формой регистрации")
     @Test
     public void loginThroughRegistrationForm() {
         RegistrationPageObj registrationPageObj = open(MainPageObj.getFullPath(RegistrationPageObj.PATH_PAGE_REGISTER), RegistrationPageObj.class);
         registrationPageObj.clickButtonSignIn();
 
         LoginPageObj loginPageObj = page(LoginPageObj.class);
-        loginPageObj.buttonSignInIsVisible();
+        loginPageObj.getButtonSignIn().shouldBe(Condition.visible);
         loginPageObj.signInAccount(userData.get("email"), userData.get("password"));
 
         MainPageObj mainPageObj = page(MainPageObj.class);
-        mainPageObj.labelConstructorBurgerIsVisible();
+        mainPageObj.getLabelConstructorBurger().shouldBe(Condition.visible);
     }
 
+    @DisplayName("Логин через форму восставновления пароля")
     @Test
     public void loginThroughPasswordRecoveryForm() {
         PasswordRecoveryPageObj passwordRecoveryPageObj = open(MainPageObj.getFullPath(PasswordRecoveryPageObj.PATH_PASSWORD_RECOVERY), PasswordRecoveryPageObj.class);
         passwordRecoveryPageObj.clickButtonSignIn();
 
         LoginPageObj loginPageObj = page(LoginPageObj.class);
-        loginPageObj.buttonSignInIsVisible();
+        loginPageObj.getButtonSignIn().shouldBe(Condition.visible);
         loginPageObj.signInAccount(userData.get("email"), userData.get("password"));
 
         MainPageObj mainPageObj = page(MainPageObj.class);
-        mainPageObj.clickButtonConstructorAndVisibleLabelConstructorBurger();
+        mainPageObj.clickButtonConstructor();
+        mainPageObj.getLabelConstructorBurger().shouldBe(Condition.visible);
     }
 }

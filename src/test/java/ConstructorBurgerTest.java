@@ -1,9 +1,12 @@
-import com.PageObj.LoginPageObj;
-import com.PageObj.MainPageObj;
+import com.codeborne.selenide.Condition;
+import com.pageObj.LoginPageObj;
+import com.pageObj.MainPageObj;
 import com.UserOperations;
+import org.junit.Test;
 import org.junit.After;
 import org.junit.Before;
-import org.junit.Test;
+
+import io.qameta.allure.junit4.DisplayName;
 
 import java.util.Map;
 
@@ -26,25 +29,28 @@ public class ConstructorBurgerTest {
         userOperations.delete();
     }
 
+    @DisplayName("Переключение на раздел с соусами")
     @Test
     public void checkMoveToSouse() {
         MainPageObj mainPageObj = page(MainPageObj.class);
         mainPageObj.clickToggleSouse();
-        mainPageObj.visibleCatalogSouse();
+        mainPageObj.getCatalogSouse().shouldBe(Condition.visible);
     }
 
+    @DisplayName("Переключение на раздел с булочками")
     @Test
     public void checkMoveToBun() {
         MainPageObj mainPageObj = page(MainPageObj.class);
         mainPageObj.clickToggleSouse();
         mainPageObj.clickToggleBun();
-        mainPageObj.visibleCatalogBun();
+        mainPageObj.getCatalogBun().shouldBe(Condition.visible);
     }
 
+    @DisplayName("Переключение на раздел с ингредиентами")
     @Test
     public void checkMoveToIngredients() {
         MainPageObj mainPageObj = page(MainPageObj.class);
         mainPageObj.clickToggleIngredients();
-        mainPageObj.visibleCatalogIngredients();
+        mainPageObj.getCatalogIngredients().shouldBe(Condition.visible);
     }
 }

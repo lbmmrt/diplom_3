@@ -1,7 +1,7 @@
-package com.PageObj;
+package com.pageObj;
 
-import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
+import io.qameta.allure.Step;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 
@@ -57,6 +57,7 @@ public class RegistrationPageObj {
         return badPasswordNotification;
     }
 
+    @Step("Регистрация пользователя")
     public void registerUser(String nameUser, String emailUser, String passwordUser) {
         getFieldForName().setValue(nameUser);
         getFieldForEmail().setValue(emailUser);
@@ -64,12 +65,13 @@ public class RegistrationPageObj {
         getButtonForRegistration().click();
     }
 
-    public void setValueInFieldPasswordAndCheckNotificationBadPassword(String passwordUser) {
+    @Step("Ввод пароля")
+    public void setValueInFieldPassword(String passwordUser) {
         getFieldForPassword().setValue(passwordUser);
         getFieldForEmail().click(); //чтобы сместить фокус с пароля
-        getBadPasswordNotification().shouldBe(Condition.visible);
     }
 
+    @Step("Клик по кнопке 'Войти'")
     public void clickButtonSignIn() {
         getButtonSignIn().click();
     }

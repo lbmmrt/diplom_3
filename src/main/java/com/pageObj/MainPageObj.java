@@ -1,7 +1,7 @@
-package com.PageObj;
+package com.pageObj;
 
-import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
+import io.qameta.allure.Step;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 
@@ -106,50 +106,38 @@ public class MainPageObj {
         return catalogIngredients;
     }
 
-
+    @Step("Клик по кнопке входа в аккаун")
     public void clickButtonLogInAccount() {
         getButtonLogInAccount().click();
     }
 
-    public void labelConstructorBurgerIsVisible() {
-        getLabelConstructorBurger().shouldBe(Condition.visible);
-    }
-
+    @Step("Клик по кнопке входа в личный кабинет")
     public void clickButtonPersonalArea() {
         getButtonPersonalArea().click();
     }
 
-    public void clickButtonConstructorAndVisibleLabelConstructorBurger() {
+    @Step("Клик по кнопке 'Конструктор'")
+    public void clickButtonConstructor() {
         getButtonConstructor().click();
-        labelConstructorBurgerIsVisible();
     }
 
-    public void clickLogoStellarBurgersAndVisibleLabelConstructorBurger() {
+    @Step("Клик по лого 'Stellar Burgers'")
+    public void clickLogoStellarBurgers() {
         getLogoStellarBurgers().click();
-        labelConstructorBurgerIsVisible();
     }
 
+    @Step("Клик по переключателю на 'Соусы'")
     public void clickToggleSouse() {
         getToggleSouse().click();
     }
 
+    @Step("Клик по переключателю на 'Булочки'")
     public void clickToggleBun() {
         getToggleBun().click();
     }
 
+    @Step("клик по переключателю на 'Ингредиенты'")
     public void clickToggleIngredients() {
         getToggleIngredients().click();
-    }
-
-    public void visibleCatalogSouse() {
-        getCatalogSouse().shouldBe(Condition.visible);
-    }
-
-    public void visibleCatalogBun() {
-        getCatalogBun().shouldBe(Condition.visible);
-    }
-
-    public void visibleCatalogIngredients() {
-        getCatalogIngredients().shouldBe(Condition.visible);
     }
 }

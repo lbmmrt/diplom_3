@@ -1,10 +1,13 @@
-import com.PageObj.LoginPageObj;
-import com.PageObj.MainPageObj;
-import com.PageObj.PersonalAreaPageObj;
+import com.codeborne.selenide.Condition;
+import com.pageObj.LoginPageObj;
+import com.pageObj.MainPageObj;
+import com.pageObj.PersonalAreaPageObj;
 import com.UserOperations;
+import org.junit.Test;
 import org.junit.After;
 import org.junit.Before;
-import org.junit.Test;
+
+import io.qameta.allure.junit4.DisplayName;
 
 import java.util.Map;
 
@@ -28,29 +31,35 @@ public class PersonalAreaTest {
         userOperations.delete();
     }
 
+    @DisplayName("Переход к личному кабинету через кнопку 'Личный кабинет'")
     @Test
     public void goToPersonalAccountThroughButton() {
         MainPageObj mainPageObj = page(MainPageObj.class);
         mainPageObj.clickButtonPersonalArea();
 
         PersonalAreaPageObj personalAreaPageObj = page(PersonalAreaPageObj.class);
-        personalAreaPageObj.labelProfileIsVisible();
+        personalAreaPageObj.getLabelProfile().shouldBe(Condition.visible);
     }
 
+    @DisplayName("Переход из личного кабинета в конструктор через кнопку 'Конструктор'")
     @Test
     public void FromPersonalAccountThroughButtonConstructor() {
         MainPageObj mainPageObj = page(MainPageObj.class);
         mainPageObj.clickButtonPersonalArea();
-        mainPageObj.clickButtonConstructorAndVisibleLabelConstructorBurger();
+        mainPageObj.clickButtonConstructor();
+        mainPageObj.getLabelConstructorBurger().shouldBe(Condition.visible);
     }
 
+    @DisplayName("Переход из личного кабинета в конструктор через лого 'Stellar Burgers'")
     @Test
     public void FromPersonalAccountThroughLogoStellarBurgers() {
         MainPageObj mainPageObj = page(MainPageObj.class);
         mainPageObj.clickButtonPersonalArea();
-        mainPageObj.clickLogoStellarBurgersAndVisibleLabelConstructorBurger();
+        mainPageObj.clickLogoStellarBurgers();
+        mainPageObj.getLabelConstructorBurger().shouldBe(Condition.visible);
     }
 
+    @DisplayName("Выход из аккаунта по кнопке 'Выйти' в личном кабинете")
     @Test
     public void logoutThoughButtonInPersonalArea() {
         MainPageObj mainPageObj = page(MainPageObj.class);
@@ -60,6 +69,6 @@ public class PersonalAreaTest {
         personalAreaPageObj.clickButtonLogout();
 
         LoginPageObj loginPageObj = page(LoginPageObj.class);
-        loginPageObj.buttonSignInIsVisible();
+        loginPageObj.getButtonSignIn().shouldBe(Condition.visible);
     }
 }

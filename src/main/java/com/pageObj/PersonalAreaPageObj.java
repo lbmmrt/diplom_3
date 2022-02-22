@@ -1,7 +1,8 @@
-package com.PageObj;
+package com.pageObj;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
+import io.qameta.allure.Step;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 
@@ -24,10 +25,7 @@ public class PersonalAreaPageObj {
         return buttonLogout;
     }
 
-    public void labelProfileIsVisible() {
-        getLabelProfile().shouldBe(Condition.visible);
-    }
-
+    @Step("Клик по кнопке 'Выйти'")
     public void clickButtonLogout() {
         getButtonLogout().click();
     }
